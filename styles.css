@@ -1,0 +1,400 @@
+:root {
+    /* Color Palette */
+    --bg-color: #1a1a1a;
+    --text-primary: #f5f5f5;
+    --text-secondary: #a0a0a0;
+    --accent-gold: #d4af37;
+    --accent-green: #1aff64;
+    --btn-bg: rgba(255, 255, 255, 0.03);
+    --btn-border: rgba(255, 255, 255, 0.1);
+    --font-main: 'Inter', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--font-main);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/background-final-green.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+.layout-container {
+    display: flex;
+    width: 100%;
+    max-width: 1920px;
+    min-height: 100vh;
+}
+
+/* --- Sidebars --- */
+.ad-sidebar {
+    flex: 1;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.ad-img {
+    max-width: 160px;
+    max-height: 600px;
+}
+
+/* --- Main Content --- */
+.hub-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+    padding: 3rem 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* --- Header --- */
+.brand-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.logo-container {
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0s;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6rem; /* MARGEN DE SEGURIDAD */
+}
+
+/* Shimmer Effect (Brillo en Logo) */
+.logo-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-25deg);
+    animation: shimmer 6s infinite;
+}
+
+.main-logo {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 50%;
+    transform: scale(1.2);
+}
+
+/* --- Sponsor --- */
+.sponsor-block {
+    width: 100%;
+    height: 180px;
+    border: 2px solid var(--accent-gold);
+    border-radius: 16px;
+    background-color: rgba(20, 20, 20, 0.5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    opacity: 0;
+    /* Animaciones: Entrada + Pulso Dorado + Flotación */
+    animation: fadeInUp 0.8s ease-out forwards, goldPulse 3s infinite ease-in-out, sponsorFloat 6s ease-in-out infinite;
+    animation-delay: 0.2s, 1s, 1s;
+}
+
+.sponsor-title {
+    color: var(--accent-gold);
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.sponsor-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    font-style: italic;
+}
+
+/* --- Navigation --- */
+.links-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeInUp 0.8s ease-out forwards;
+    animation-delay: 0.4s;
+}
+
+.hub-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
+    padding: 1.2rem;
+    background-color: var(--btn-bg);
+    border: 1px solid var(--btn-border);
+    border-radius: 12px;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-size: 1.05rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.hub-btn:active {
+    transform: scale(0.98);
+}
+
+/* ICON SIZE FIX */
+.btn-icon {
+    width: 18px;
+    height: 18px;
+    opacity: 0.9;
+}
+
+/* Hover */
+@media (hover: hover) {
+    .hub-btn:hover {
+        background-color: rgba(26, 255, 100, 0.12);
+        border-color: var(--accent-green);
+        color: var(--accent-green);
+        box-shadow: 0 0 14px rgba(26, 255, 100, 0.5);
+        transform: translateY(-2px);
+    }
+}
+
+/* Maintenance/Under Repair Button */
+.hub-btn.maintenance {
+    flex-direction: column;
+    background: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.02),
+            rgba(255, 255, 255, 0.02) 10px,
+            rgba(255, 255, 255, 0.05) 10px,
+            rgba(255, 255, 255, 0.05) 20px);
+    border-color: rgba(212, 175, 55, 0.2);
+    color: rgba(255, 255, 255, 0.4);
+    cursor: default;
+    gap: 0.3rem;
+    padding: 0.9rem 1.2rem;
+}
+
+.hub-btn.maintenance:hover {
+    box-shadow: none;
+    transform: none;
+}
+
+.hub-btn.maintenance span:first-child {
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.badge {
+    background: rgba(212, 175, 55, 0.15);
+    color: var(--accent-gold);
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(212, 175, 55, 0.3);
+    text-transform: uppercase;
+}
+
+/* --- DETAILS (Info / Apoyar) --- */
+.info-block {
+    width: 100%;
+}
+
+.info-block summary {
+    list-style: none;
+}
+
+.info-block summary::-webkit-details-marker {
+    display: none;
+}
+
+.info-content {
+    margin-top: 0.8rem;
+    padding: 1.2rem;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    animation: fadeIn 0.25s ease;
+}
+
+.info-content p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin-bottom: 0.9rem;
+}
+
+.info-highlight {
+    color: var(--accent-green) !important;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* --- Mobile Ads --- */
+.mobile-ads {
+    display: flex;
+    gap: 1rem;
+    margin-top: auto;
+    margin-bottom: 4rem;
+}
+
+.mobile-ads img {
+    width: 100%;
+    border-radius: 8px;
+}
+
+/* --- Footer --- */
+.brand-footer {
+    text-align: center;
+}
+
+.brand-footer p {
+    color: #050505;
+    font-size: 0.75rem;
+}
+
+/* --- Desktop --- */
+@media (min-width: 1024px) {
+    .ad-sidebar {
+        display: flex;
+    }
+
+    .mobile-ads {
+        display: none;
+    }
+
+    .hub-container {
+        max-width: 500px;
+        padding-top: 4rem;
+    }
+}
+
+/* --- Animations Keyframes --- */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes goldPulse {
+    0% {
+        border-color: #d4af37;
+    }
+
+    50% {
+        border-color: #ffdb60;
+        box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+    }
+
+    100% {
+        border-color: #d4af37;
+    }
+}
+
+@keyframes sponsorFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes shimmer {
+    0%,
+    90% {
+        left: -150%;
+    }
+
+    100% {
+        left: 150%;
+    }
+}
+
+/* --- Sponsor GOLD Hover --- */
+@media (hover: hover) {
+    .sponsor-block:hover {
+        box-shadow: 0 0 28px rgba(212, 175, 55, 0.35);
+        border-color: #e5c155;
+        transform: translateY(-2px);
+    }
+}
+
+/* ===== FIX BANNERS ROLLERCOIN ===== */
+.ad-img {
+    width: 100%;
+    max-width: 160px;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    background: transparent;
+}
+
+@media (min-width: 1024px) {
+    .ad-sidebar {
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 510px;
+    }
+
+    .ad-sidebar .ad-img {
+        height: 600px;
+        max-width: 160px;
+    }
+}
