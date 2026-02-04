@@ -427,3 +427,26 @@ body::before {
         max-width: 160px;
     }
 }
+
+/* VIDEO BACKGROUND FIX (MOBILE + DESKTOP) */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    object-fit: cover;
+    z-index: -10;
+}
+
+/* Evitar que el video rompa el layout en móviles */
+body {
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Asegurar que todo el contenido se mantenga encima del video */
+.layout-container {
+    position: relative;
+    z-index: 10;
+}
