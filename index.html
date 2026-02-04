@@ -16,6 +16,12 @@
 </head>
 
 <body>
+
+    <!-- VIDEO FONDO -->
+    <video autoplay muted playsinline class="video-bg" id="bgVideo">
+        <source src="video-fondo/video-fondo.mp4" type="video/mp4">
+    </video>
+
     <div class="layout-container">
 
         <!-- LEFT DESKTOP BANNER -->
@@ -191,6 +197,17 @@
         </aside>
 
     </div>
+
+    <!-- SCRIPT: REPRODUCIR UNA VEZ Y CONGELAR -->
+    <script>
+        const video = document.getElementById("bgVideo");
+
+        video.addEventListener("ended", () => {
+            video.pause();
+            video.currentTime = video.duration;
+        });
+    </script>
+
 </body>
 
 </html>

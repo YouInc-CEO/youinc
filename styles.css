@@ -20,15 +20,44 @@ body {
     background-color: var(--bg-color);
     color: var(--text-primary);
     font-family: var(--font-main);
+
+    /* BACKUP SI EL VIDEO NO CARGA */
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/background-final-green.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
+
     min-height: 100vh;
     display: flex;
     justify-content: center;
     overflow-x: hidden;
+}
+
+/* ===== VIDEO FONDO (NUEVO) ===== */
+.video-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+    opacity: 0.35;
+    pointer-events: none;
+}
+
+/* Oscurecer el video para que se vea elegante y no moleste */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: -1;
+    pointer-events: none;
 }
 
 .layout-container {
