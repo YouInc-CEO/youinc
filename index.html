@@ -208,6 +208,59 @@
         });
     </script>
 
+    <!-- MÚSICA DE FONDO -->
+    <audio id="bgMusic" preload="auto"></audio>
+
+    <button id="musicBtn" class="music-btn">
+        Activar música
+    </button>
+
+    <script>
+        const audio = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
+
+        const playlist = [
+            "music/cancion1.mp3",
+            "music/cancion2.mp3",
+            "music/cancion3.mp3"
+        ];
+
+        let currentTrack = 0;
+        let musicStarted = false;
+
+        function loadTrack(index) {
+            audio.src = playlist[index];
+            audio.load();
+        }
+
+        function playTrack(index) {
+            currentTrack = index;
+            loadTrack(currentTrack);
+            audio.play().catch(() => {});
+        }
+
+        audio.addEventListener("ended", () => {
+            currentTrack = (currentTrack + 1) % playlist.length;
+            playTrack(currentTrack);
+        });
+
+        musicBtn.addEventListener("click", () => {
+            if (!musicStarted) {
+                musicStarted = true;
+                musicBtn.textContent = "Música activada";
+                playTrack(0);
+            } else {
+                if (audio.paused) {
+                    audio.play();
+                    musicBtn.textContent = "Pausar música";
+                } else {
+                    audio.pause();
+                    musicBtn.textContent = "Reanudar música";
+                }
+            }
+        });
+    </script>
+
 </body>
 
 </html>
